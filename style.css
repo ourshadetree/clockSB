@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('./fonts/Silkscreen-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Silkscreen', sans-serif;
+    text-align: center;
+}
+
+p {
+    color: aquamarine;
+    mix-blend-mode: hard-light;
+}
+
+#title {
+    margin: 0;
+}
+
+button {
+    margin: 10px;
+}
+
+#outer-shell {
+    margin: auto;
+    border: 2px solid #FAF0CA;
+    border-radius: 5px;
+    background-color: #FAF0CA;
+    padding-bottom: 30px;
+    width: 400px;
+}
+
+#screen {
+    margin: auto;
+    border: 2px solid #0D3B66;
+    border-radius: 5px;
+    background-color: #0D3B66;
+
+    width: 300px;
+    height: 50px;
+}
