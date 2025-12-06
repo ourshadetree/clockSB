@@ -26,7 +26,12 @@ function loadClock() {
     setInterval(getTime, 1000);
 }
 
-function updateScreen() {
+function getTime() {
+    var currentTime = new Date();
+    minutes = currentTime.getMinutes();
+    hours = currentTime.getHours();
+    seconds = currentTime.getSeconds();
+
     if(hours > 12) {
         amPm = "PM";
     } else {
@@ -49,15 +54,7 @@ function updateScreen() {
 
     let timeNow = document.getElementById("clockScreen");
     timeNow.innerHTML = time;
-}
 
-function getTime() {
-    var currentTime = new Date();
-    minutes = currentTime.getMinutes();
-    hours = currentTime.getHours();
-    seconds = currentTime.getSeconds();
-
-    updateScreen();
 }
 
 function loadSW() {
@@ -67,7 +64,7 @@ function loadSW() {
 
 function loadTimer() {
     clearAllIntervals();
-    document.getElementById("clockScreen").innerHTML = "0" + timer.hours + ":0" + timer.minutes + ":0" + timer.seconds;
+    document.getElementById("clockScreen").innerHTML = timer.hours + ":" + timer.minutes + ":" + timer.seconds;
 }
 
 

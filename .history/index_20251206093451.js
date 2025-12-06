@@ -26,7 +26,12 @@ function loadClock() {
     setInterval(getTime, 1000);
 }
 
-function updateScreen() {
+function getTime() {
+    var currentTime = new Date();
+    minutes = currentTime.getMinutes();
+    hours = currentTime.getHours();
+    seconds = currentTime.getSeconds();
+
     if(hours > 12) {
         amPm = "PM";
     } else {
@@ -49,15 +54,7 @@ function updateScreen() {
 
     let timeNow = document.getElementById("clockScreen");
     timeNow.innerHTML = time;
-}
 
-function getTime() {
-    var currentTime = new Date();
-    minutes = currentTime.getMinutes();
-    hours = currentTime.getHours();
-    seconds = currentTime.getSeconds();
-
-    updateScreen();
 }
 
 function loadSW() {
@@ -67,25 +64,25 @@ function loadSW() {
 
 function loadTimer() {
     clearAllIntervals();
-    document.getElementById("clockScreen").innerHTML = "0" + timer.hours + ":0" + timer.minutes + ":0" + timer.seconds;
+    setTimer();
 }
 
 
-document.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-unit][data-direction]");
-    if(!btn) return;
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-unit][data-direction]");
+        if(!btn) return;
 
-    const unit = btn.dataset.unit;
-    const direction = btn.dataset.direction;
+        const unit = btn.dataset.unit;
+        const direction = btn.dataset.direction;
 
-    if(direction === "up") {
-        timer[unit]++;
-    } else {
-        timer[unit]--;
-    } 
-        updateScreen();
-
-});
+        if(direction === "up") {
+            timer[unit]++;
+        } else {
+            timer[unit]--;
+        } 
+            updateScreen();
+   
+    });
 
 
 

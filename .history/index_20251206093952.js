@@ -49,6 +49,7 @@ function updateScreen() {
 
     let timeNow = document.getElementById("clockScreen");
     timeNow.innerHTML = time;
+    return;
 }
 
 function getTime() {

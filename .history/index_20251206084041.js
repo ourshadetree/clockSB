@@ -4,11 +4,6 @@ var amPm = "AM";
 var seconds;
 var minutes;
 var hours;
-const timer = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-}
 
 window.onload = function() {
     loadClock();
@@ -26,7 +21,12 @@ function loadClock() {
     setInterval(getTime, 1000);
 }
 
-function updateScreen() {
+function getTime() {
+    var currentTime = new Date();
+    minutes = currentTime.getMinutes();
+    hours = currentTime.getHours();
+    seconds = currentTime.getSeconds();
+
     if(hours > 12) {
         amPm = "PM";
     } else {
@@ -49,49 +49,12 @@ function updateScreen() {
 
     let timeNow = document.getElementById("clockScreen");
     timeNow.innerHTML = time;
-}
 
-function getTime() {
-    var currentTime = new Date();
-    minutes = currentTime.getMinutes();
-    hours = currentTime.getHours();
-    seconds = currentTime.getSeconds();
-
-    updateScreen();
 }
 
 function loadSW() {
     clearAllIntervals();
     stopWatch();
-}
-
-function loadTimer() {
-    clearAllIntervals();
-    document.getElementById("clockScreen").innerHTML = "0" + timer.hours + ":0" + timer.minutes + ":0" + timer.seconds;
-}
-
-
-document.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-unit][data-direction]");
-    if(!btn) return;
-
-    const unit = btn.dataset.unit;
-    const direction = btn.dataset.direction;
-
-    if(direction === "up") {
-        timer[unit]++;
-    } else {
-        timer[unit]--;
-    } 
-        updateScreen();
-
-});
-
-
-
-function updateScreen() {
-        document.getElementById("clockScreen").innerHTML = timer.hours + ":" + timer.minutes + ":" + timer.seconds;
-
 }
 
 function stopWatch() {
@@ -108,10 +71,6 @@ function start() {
     setInterval(countUp, 1000);
 }
 
-function end() {
-    clearAllIntervals();
-}
-
 function countUp() {
     let displayMin;
     let displaySec;
@@ -125,9 +84,6 @@ function countUp() {
     } else if(seconds == 0) {
         displaySec = "";
         displaySec = "00";
-    } else {
-        displaySec = "";
-        displaySec = seconds;
     }
     if(minutes < 10 && minutes != 0) {
         displayMin = "";
@@ -135,9 +91,6 @@ function countUp() {
     } else if(minutes == 0) {
         displayMin = "";
         displayMin = "00";
-    } else {
-        displayMin = "";
-        displayMin = minutes;
     }
     if(hours < 10 && hours != 0) {
         displayHour = "";
@@ -145,15 +98,12 @@ function countUp() {
     } else if(hours == 0) {
         displayHour = "";
         displayHour = "00";
-    } else {
-        displayHour = "";
-        displayHour = hours;
     }
-    if(seconds == 59) {
+    if(seconds == 60) {
         seconds = 0;
         minutes++;
     }
-    if(minutes == 59) {
+    if(minutes == 60) {
         minutes = 0;
         hours++;
     }

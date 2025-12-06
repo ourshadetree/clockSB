@@ -4,11 +4,6 @@ var amPm = "AM";
 var seconds;
 var minutes;
 var hours;
-const timer = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-}
 
 window.onload = function() {
     loadClock();
@@ -26,7 +21,12 @@ function loadClock() {
     setInterval(getTime, 1000);
 }
 
-function updateScreen() {
+function getTime() {
+    var currentTime = new Date();
+    minutes = currentTime.getMinutes();
+    hours = currentTime.getHours();
+    seconds = currentTime.getSeconds();
+
     if(hours > 12) {
         amPm = "PM";
     } else {
@@ -49,15 +49,7 @@ function updateScreen() {
 
     let timeNow = document.getElementById("clockScreen");
     timeNow.innerHTML = time;
-}
 
-function getTime() {
-    var currentTime = new Date();
-    minutes = currentTime.getMinutes();
-    hours = currentTime.getHours();
-    seconds = currentTime.getSeconds();
-
-    updateScreen();
 }
 
 function loadSW() {
@@ -67,31 +59,19 @@ function loadSW() {
 
 function loadTimer() {
     clearAllIntervals();
-    document.getElementById("clockScreen").innerHTML = "0" + timer.hours + ":0" + timer.minutes + ":0" + timer.seconds;
+    setTimer();
 }
 
+function setTimer() {
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
 
-document.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-unit][data-direction]");
-    if(!btn) return;
+    displaySec = "00";
+    displayMin = "00";
+    displayHour = "00";
 
-    const unit = btn.dataset.unit;
-    const direction = btn.dataset.direction;
-
-    if(direction === "up") {
-        timer[unit]++;
-    } else {
-        timer[unit]--;
-    } 
-        updateScreen();
-
-});
-
-
-
-function updateScreen() {
-        document.getElementById("clockScreen").innerHTML = timer.hours + ":" + timer.minutes + ":" + timer.seconds;
-
+    document.getElementById("clockScreen").innerHTML = displayHour + ":" + displayMin + ":" + displaySec;
 }
 
 function stopWatch() {
