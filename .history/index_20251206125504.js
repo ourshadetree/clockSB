@@ -9,21 +9,6 @@ window.onload = function() {
     loadClock();
 }
 
-document.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-unit][data-direction]");
-    if(!btn) return;
-
-    const unit = btn.dataset.unit;
-    const direction = btn.dataset.direction;
-
-    if(direction === "up") {
-        timer[unit]++;
-    } else {
-        timer[unit]--;
-    } 
-
-});
-
 function clearAllIntervals() {
     for(let i = 1; i < 99999; i++) {
         window.clearInterval(i);
@@ -42,14 +27,10 @@ function getTime() {
     const hours = currentTime.getHours();
     const seconds = currentTime.getSeconds();
 
-    updateClockScreen({minutes, hours, seconds});
+    updateScreen({minutes, hours, seconds});
 }
 
-function updateClockScreen(timeObj) {
-    var amPm = "AM";
-    if(timeObj.hours >= 12) {
-        amPm = "PM";
-    }
+function updateScreen(timeObj) {
     if(timeObj.hours > 12) {
         timeObj.hours = timeObj.hours - 12;
     }
@@ -62,7 +43,7 @@ function updateClockScreen(timeObj) {
         timeObj.seconds = "0" + timeObj.seconds;
     }
 
-    let timeNow = timeObj.hours + ":" + timeObj.minutes + ":" + timeObj.seconds + " " + amPm;
+    let timeNow = timeObj.hours + ":" + timeObj.minutes + ":" + timeObj.seconds;
 
     let timeNowDis = document.getElementById("clockScreen");
     timeNowDis.innerHTML = timeNow;
@@ -77,6 +58,23 @@ function loadTimer() {
     clearAllIntervals();
     document.getElementById("clockScreen").innerHTML = "0" + timer.hours + ":0" + timer.minutes + ":0" + timer.seconds;
 }
+
+
+document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-unit][data-direction]");
+    if(!btn) return;
+
+    const unit = btn.dataset.unit;
+    const direction = btn.dataset.direction;
+
+    if(direction === "up") {
+        timer[unit]++;
+    } else {
+        timer[unit]--;
+    } 
+        updateScreen();
+
+});
 
 function stopWatch() {
     seconds = 0;

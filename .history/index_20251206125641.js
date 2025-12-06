@@ -46,10 +46,6 @@ function getTime() {
 }
 
 function updateClockScreen(timeObj) {
-    var amPm = "AM";
-    if(timeObj.hours >= 12) {
-        amPm = "PM";
-    }
     if(timeObj.hours > 12) {
         timeObj.hours = timeObj.hours - 12;
     }
@@ -62,7 +58,7 @@ function updateClockScreen(timeObj) {
         timeObj.seconds = "0" + timeObj.seconds;
     }
 
-    let timeNow = timeObj.hours + ":" + timeObj.minutes + ":" + timeObj.seconds + " " + amPm;
+    let timeNow = timeObj.hours + ":" + timeObj.minutes + ":" + timeObj.seconds;
 
     let timeNowDis = document.getElementById("clockScreen");
     timeNowDis.innerHTML = timeNow;

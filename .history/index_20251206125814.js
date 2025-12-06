@@ -46,7 +46,7 @@ function getTime() {
 }
 
 function updateClockScreen(timeObj) {
-    var amPm = "AM";
+    const amPm = "AM";
     if(timeObj.hours >= 12) {
         amPm = "PM";
     }
