@@ -13,7 +13,6 @@ body {
 #clockScreen {
     color: aquamarine;
     mix-blend-mode: hard-light;
-    font-size: 40px;
 }
 
 #title {

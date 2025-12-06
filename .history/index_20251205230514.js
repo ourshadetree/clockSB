@@ -1,16 +1,12 @@
-var checkT = new Date();
+var currentTime = new Date();
 var time;
 var amPm = "AM";
-var seconds;
-var minutes;
-var hours;
 
 window.onload = function() {
-    loadClock();
+    getTime();
 }
 
 function getTime() {
-    var currentTime = new Date();
     minutes = currentTime.getMinutes();
     hours = currentTime.getHours();
     seconds = currentTime.getSeconds();
@@ -33,22 +29,10 @@ function getTime() {
         seconds = "0" + seconds;
     }
 
-    let time = hours + ":" + minutes + ":" + seconds + " " + amPm;
+    time = hours + ":" + minutes + ":" + seconds + " " + amPm;
 
-    let timeNow = document.getElementById("clockScreen");
-    timeNow.innerHTML = time;
+    console.log(time); 
 
-}
-
-function openSW() {
-    minutes = 0;
-    hours = 0;
-    seconds = 0;
-
-    document.getElementById("clockScreen").innerHTML = "00:00:00";
-    clearInterval(getTime, 1000);
-
-    
 }
 
 

@@ -6,7 +6,8 @@ var minutes;
 var hours;
 
 window.onload = function() {
-    loadClock();
+    getTime();
+    setInterval(getTime, 1000);
 }
 
 function getTime() {
@@ -46,7 +47,6 @@ function openSW() {
     seconds = 0;
 
     document.getElementById("clockScreen").innerHTML = "00:00:00";
-    clearInterval(getTime, 1000);
 
     
 }

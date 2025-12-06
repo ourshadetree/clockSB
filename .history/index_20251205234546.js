@@ -6,7 +6,8 @@ var minutes;
 var hours;
 
 window.onload = function() {
-    loadClock();
+    getTime();
+    setInterval(getTime, 1000);
 }
 
 function getTime() {

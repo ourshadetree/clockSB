@@ -10,10 +10,9 @@ body {
     text-align: center;
 }
 
-#clockScreen {
+p {
     color: aquamarine;
     mix-blend-mode: hard-light;
-    font-size: 40px;
 }
 
 #title {
